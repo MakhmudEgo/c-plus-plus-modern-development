@@ -26,14 +26,13 @@ int     main(void)
         else if (command == "DUMP")
         {
             cin >> day;
-            if (!affairs[month_index][day - 1].size())
-                cout << 0 << endl;
-            else
-            {
-                for (auto a : affairs[month_index][day - 1])
-                    cout << a << " ";
+            cout << affairs[month_index][day - 1].size() << " ";
+
+            for (auto a : affairs[month_index][day - 1])
+                cout << a << " ";
+            if (!(i == amount_command - 1))
                 cout << endl;
-            }
+
         }
         else if (command == "NEXT")
         {
