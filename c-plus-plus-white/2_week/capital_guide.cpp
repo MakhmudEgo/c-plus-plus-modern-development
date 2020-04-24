@@ -15,7 +15,7 @@ void    chang_capital(const string &count, const string &cap, map<string, string
         cout << "Country " << count << " hasn't changed its capital" << endl;
     else if (caps[count] != cap)
     {
-        cout << "Country " << count << " has changed its capital from " << caps[count] << " to " << cap;
+        cout << "Country " << count << " has changed its capital from " << caps[count] << " to " << cap << endl;
         caps[count] = cap;
     }
 }
@@ -23,7 +23,10 @@ void    chang_capital(const string &count, const string &cap, map<string, string
 void    rename(const string &count, const string &new_count, map<string, string> &caps)
 {
     if (caps[count] == "" || caps[new_count] != "")
-        cout << "Incorrect rename, skip";
+    {
+        cout << "Incorrect rename, skip" << endl;
+        caps.erase(count);
+    }
     else
     {
         caps[new_count] = caps[count];
@@ -31,6 +34,17 @@ void    rename(const string &count, const string &new_count, map<string, string>
             caps[count] << " has been renamed to " << new_count << endl;
         caps.erase(count);
     }
+}
+
+void    about(const string &count, map<string, string> &caps)
+{
+    if (caps[count] == "")
+    {
+        cout << "Country " << count << " doesn't exist" << endl;
+        caps.erase(count);
+    }
+    else
+        cout << "Country " << count << " has capital " << caps[count] << endl;
 }
 int     main(void)
 {
@@ -52,6 +66,11 @@ int     main(void)
         {
             cin >> country >> new_country;
             rename(country, new_country, caps);
+        }
+        else if (command == "ABOUT")
+        {
+            cin >> country;
+            about(country, caps);
         }
     }
 }
