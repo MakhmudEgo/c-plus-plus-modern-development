@@ -22,12 +22,8 @@ void    chang_capital(const string &count, const string &cap, map<string, string
 
 void    rename(const string &count, const string &new_count, map<string, string> &caps)
 {
-    if (caps[count] == "" || caps[new_count] != "")
-    {
+    if (caps.count(count) == 0 || caps[new_count] != "")
         cout << "Incorrect rename, skip" << endl;
-        if (caps[count] == "")
-            caps.erase(count);
-    }
     else
     {
         caps[new_count] = caps[count];
