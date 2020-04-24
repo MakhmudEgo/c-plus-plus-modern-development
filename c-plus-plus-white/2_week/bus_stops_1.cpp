@@ -37,10 +37,26 @@ int     main(void) {
             }
         } else if (command == "STOPS_FOR_BUS") {
             cin >> bus;
-            if (bus_stops.count(bus))
+            if (!bus_stops.count(bus))
                 cout << "No buses" << endl;
             else {
-
+                for (auto &item : bus_stops[bus]) {
+                    cout << "Stop " << item << ": ";
+                    bool exist = true;
+                    for (auto &buses : bus_stops) {
+                        for (auto &stop : buses.second) {
+                            if (buses.first != bus && stop == item)
+                            {
+                                cout << buses.first << " ";
+                                exist = false;
+                            }
+                        }
+                    }
+                    if (exist)
+                        cout << "no interchange" << endl;
+                    else
+                        cout << endl;
+                }
             }
         }
     }
