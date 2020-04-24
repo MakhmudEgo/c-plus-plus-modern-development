@@ -2,7 +2,6 @@
 #include <map>
 #include <string>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 vector<string>      get_stops(const int &amount_stops)
