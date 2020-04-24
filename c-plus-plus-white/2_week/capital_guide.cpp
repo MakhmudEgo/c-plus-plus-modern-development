@@ -25,7 +25,8 @@ void    rename(const string &count, const string &new_count, map<string, string>
     if (caps[count] == "" || caps[new_count] != "")
     {
         cout << "Incorrect rename, skip" << endl;
-        caps.erase(count);
+        if (caps[count] == "")
+            caps.erase(count);
     }
     else
     {
@@ -54,6 +55,7 @@ void    dump(const map<string, string> &caps)
     {
         for (const auto &item : caps)
             cout << item.first << "/" << item.second << " ";
+        cout << endl;
     }
 }
 
