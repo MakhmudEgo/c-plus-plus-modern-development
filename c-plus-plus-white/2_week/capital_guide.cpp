@@ -46,6 +46,17 @@ void    about(const string &count, map<string, string> &caps)
     else
         cout << "Country " << count << " has capital " << caps[count] << endl;
 }
+void    dump(const map<string, string> &caps)
+{
+    if (caps.size() == 0)
+        cout << "There are no countries in the world" << endl;
+    else
+    {
+        for (const auto &item : caps)
+            cout << item.first << "/" << item.second << " ";
+    }
+}
+
 int     main(void)
 {
     int amount_command;
@@ -72,5 +83,7 @@ int     main(void)
             cin >> country;
             about(country, caps);
         }
+        else if (command == "DUMP")
+            dump(caps);
     }
 }
