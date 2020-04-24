@@ -88,4 +88,5 @@ int     main(void)
         else if (command == "DUMP")
             dump(caps);
     }
+    return (0);
 }
