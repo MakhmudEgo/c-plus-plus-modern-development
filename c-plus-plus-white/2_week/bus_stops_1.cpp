@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 vector<string>      get_stops(const int &amount_stops)
@@ -47,21 +48,21 @@ void    stops_for_bus(vector<map<string, vector<string>>> bus_stops) {
     cin >> bus;
     if (exist_buses(bus_stops, bus))
         cout << "No bus" << endl;
-    for (auto item : bus_stops)
+    for (auto &item : bus_stops)
     {
-        for ( auto itm : item)
+        for ( auto &itm : item)
         {
             if (itm.first == bus)
             {
-                for (auto it : item[bus])
+                for (auto &it : item[bus])
                 {
                     cout << "Stop " << it << ": ";
                     bool exist = true;
-                    for (auto item_new : bus_stops)
+                    for (auto &item_new : bus_stops)
                     {
-                        for (auto item_new_item : item_new)
+                        for (auto &item_new_item : item_new)
                         {
-                            for ( auto i : item_new_item.second) {
+                            for ( auto &i : item_new_item.second) {
                                 if (item_new_item.first != bus && i == it)
                                 {
                                     exist = false;
@@ -76,6 +77,7 @@ void    stops_for_bus(vector<map<string, vector<string>>> bus_stops) {
                         cout << endl;
                 }
             }
+            break;
         }
     }
 
@@ -117,10 +119,8 @@ int     main(void) {
             cin >> bus >> amount_stops;
             bus_stops.push_back({{bus, get_stops(amount_stops)}});
         } else if (command == "ALL_BUSES") {
-            //all busse
             all_buses(bus_stops);
         } else if (command == "STOPS_FOR_BUS") {
-            //stops
             stops_for_bus(bus_stops);
         } else if (command == "BUSES_FOR_STOP")
             buses_for_stop(bus_stops);
