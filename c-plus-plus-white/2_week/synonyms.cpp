@@ -1,46 +1,35 @@
 #include <iostream>
 #include <set>
 #include <string>
+#include <map>
 using namespace std;
-
-void    add_synonyms(set<set<string>>& synonyms) {
-    string word1, word2;
-    cin >> word1 >> word2;
-    synonyms.insert({word1, word2});
-}
-
-int    count_synonyms(const set<set<string>>& synonyms) {
-    int n = 0;
-    string word;
-    cin >> word;
-    for (const auto& item : synonyms) {
-        if (item.count(word))
-            n++;
-    }
-    return (n);
-}
-
-bool    check_synonyms(const set<set<string>>& synonyms) {
-    string word1, word2;
-    cin >> word1 >> word2;
-    if (synonyms.count({word1, word2}))
-        return (true);
-    return (false);
-}
 
 int     main(void) {
     int num_command;
     cin >> num_command;
+    string word1, word2;
     string command;
     set<set<string>> synonyms;
+    map<string, int> num_syn;
     for (int i = 0; i < num_command; ++i) {
         cin >> command;
-        if (command == "ADD")
-            add_synonyms(synonyms);
+        if (command == "ADD") {
+            cin >> word1 >> word2;
+            int tmp = synonyms.size();
+            synonyms.insert({word1, word2});
+            if (tmp < synonyms.size()) {
+                ++num_syn[word1];
+                ++num_syn[word2];
+            }
+        }
         else if (command == "COUNT")
-            cout << count_synonyms(synonyms) << endl;
+        {
+            cin >> word1;
+            cout << num_syn[word1] << endl;
+        }
         else if (command == "CHECK") {
-            if (check_synonyms(synonyms))
+            cin >> word1 >> word2;
+            if (synonyms.count({word1, word2}))
                 cout << "YES" << endl;
             else
                 cout << "NO" << endl;
